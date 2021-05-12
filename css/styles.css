@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;400&display=swap');
 
-html {
-  text-align: center;
-  font-family: 'Exo 2', sans-serif;
-}
-
 @media (max-width: 767px) {
   .container {
     flex-wrap: wrap;
@@ -29,9 +24,13 @@ html {
   }
 }
 
+html {
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  min-height: 100vh;
+}
 body {
   margin: 0;
-  min-height: 100vh;
 }
 .container {
   display: flex;
@@ -42,6 +41,9 @@ body {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin: 0.5em;
   padding: 1em;
-  min-height: 60vh;
+  min-height: fit-content;
   border-radius: 0.5em;
+}
+img {
+  width: 100%;
 }
