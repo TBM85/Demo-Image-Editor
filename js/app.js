@@ -15,12 +15,12 @@ const controllers = [
 
 const controllersContainer = document.querySelector('.controllers');
 
-const createController = () => {
+const createController = () => {  
   for (let controller of controllers) {
     const controllerItem = document.createElement('controller');
     controllersContainer.appendChild(controllerItem);
     controllerItem.classList.add('controller');
-    
+
     const label = document.createElement('label');
     controllerItem.appendChild(label);
     label.for = `${controller.name}`;
@@ -63,3 +63,17 @@ const createController = () => {
 }
 
 createController();
+
+const inputControllers = document.querySelectorAll(".controller input");
+
+const updateInputsHandler = () => {
+  for (let input of inputControllers) {
+    const updateInputValueHandler = () => {
+      input.nextElementSibling.innerHTML = input.value;
+    };
+    
+    input.addEventListener("change", updateInputValueHandler);
+  }
+}
+
+updateInputsHandler();
