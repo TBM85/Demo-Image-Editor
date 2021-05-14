@@ -27,8 +27,8 @@
 :root {
   --brightness: 100%;
   --contrast: 100%;
-  --hue-rotate: 0deg;
   --saturate: 100%;
+  --hue-rotate: 0deg;
   --sepia: 0%;
   --greyscale: 0%;
   --rotateY: 0deg;
@@ -64,7 +64,6 @@ img {
     hue-rotate(var(--hue-rotate)) saturate(var(--saturate)) sepia(var(--sepia))
     grayscale(var(--greyscale));
   transform: rotateX(var(--rotateX)) rotateY(var(--rotateY));
-  transition: 0.8s linear;
 }
 .controllers {
   display: flex;

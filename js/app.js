@@ -152,3 +152,19 @@ const flipVerticallyHandler = () => {
 };
 
 flipVerticallyBtn.addEventListener("click", flipVerticallyHandler);
+
+// Deletes all changes made and returns to all original values
+const resetInputValuesBtn = document.querySelector('.reset-all');
+
+const resetInputValuesHandler = () => {
+  image.style.setProperty("--brightness", 100 + "%");
+  image.style.setProperty("--contrast", 100 + "%");
+  image.style.setProperty("--saturate", 100 + "%");
+  image.style.setProperty("--hue-rotate", 0 + "deg");
+  image.style.setProperty("--sepia", 0 + "%");
+  image.style.setProperty("--greyscale", 0 + "%");
+  image.style.setProperty("--rotateY", 0 + "deg");
+  image.style.setProperty("--rotateX", 0 + "deg");
+}
+
+resetInputValuesBtn.addEventListener('click', resetInputValuesHandler);
