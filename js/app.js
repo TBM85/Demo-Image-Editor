@@ -1,33 +1,63 @@
-const imageContainer = document.querySelector('.image');
+const imageContainer = document.querySelector(".image");
 
-const image = document.createElement('img');
+const image = document.createElement("img");
 imageContainer.appendChild(image);
-image.src = "https://cdn.pixabay.com/photo/2019/07/21/19/01/landscape-4353358_1280.jpg";
+image.classList.add("rotateImg");
+image.src =
+  "https://cdn.pixabay.com/photo/2019/07/21/19/01/landscape-4353358_1280.jpg";
 
 const controllers = [
-  {name: 'brightness', id: 'brightness', type: 'range', min: 0, max: 200, value: 100},
-  {name: 'contrast', id: 'contrast', type: 'range', min: 0, max: 200, value: 100},
-  {name: 'saturation', id: 'saturate', type: 'range', min: 0, max: 200, value: 100},
-  {name: 'hue', id: 'hue-rotate', type: 'range', min: 0, max: 300, value: 0},
-  {name: 'sepia', id: 'sepia', type: 'range', min: 0, max: 100, value: 0},
-  {name: 'greyscale', id: 'greyscale', type: 'range', min: 0, max: 100, value: 0}
+  {
+    name: "brightness",
+    id: "brightness",
+    type: "range",
+    min: 0,
+    max: 200,
+    value: 100,
+  },
+  {
+    name: "contrast",
+    id: "contrast",
+    type: "range",
+    min: 0,
+    max: 200,
+    value: 100,
+  },
+  {
+    name: "saturation",
+    id: "saturate",
+    type: "range",
+    min: 0,
+    max: 200,
+    value: 100,
+  },
+  { name: "hue", id: "hue-rotate", type: "range", min: 0, max: 300, value: 0 },
+  { name: "sepia", id: "sepia", type: "range", min: 0, max: 100, value: 0 },
+  {
+    name: "greyscale",
+    id: "greyscale",
+    type: "range",
+    min: 0,
+    max: 100,
+    value: 0,
+  },
 ];
 
 // Create the image editor structure
-const controllersContainer = document.querySelector('.controllers');
+const controllersContainer = document.querySelector(".controllers");
 
-const createController = () => {  
+const createController = () => {
   for (let controller of controllers) {
-    const controllerItem = document.createElement('controller');
+    const controllerItem = document.createElement("controller");
     controllersContainer.appendChild(controllerItem);
-    controllerItem.classList.add('controller');
+    controllerItem.classList.add("controller");
 
-    const label = document.createElement('label');
+    const label = document.createElement("label");
     controllerItem.appendChild(label);
     label.for = `${controller.id}`;
     label.innerHTML = `${controller.name}`;
 
-    const input = document.createElement('input');
+    const input = document.createElement("input");
     controllerItem.appendChild(input);
     input.id = `${controller.id}`;
     input.type = `${controller.type}`;
@@ -36,33 +66,34 @@ const createController = () => {
     input.value = `${controller.value}`;
     input.innerHTML = `${controller.value}`;
 
-    const inputValue = document.createElement('div');
+    const inputValue = document.createElement("div");
     controllerItem.appendChild(inputValue);
-    inputValue.classList.add('input-value');
+    inputValue.classList.add("input-value");
     inputValue.innerHTML = `${controller.value}`;
   }
 
-  const buttonsContainer = document.createElement('div');
+  const buttonsContainer = document.createElement("div");
   controllersContainer.appendChild(buttonsContainer);
-  buttonsContainer.classList.add('buttons');
+  buttonsContainer.classList.add("buttons");
 
-  const buttonRotateH = document.createElement('button');
+  const buttonRotateH = document.createElement("button");
   buttonsContainer.appendChild(buttonRotateH);
-  buttonRotateH.classList.add('rotate-horizontally')
-  buttonRotateH.innerHTML = 'Rotate Horizontally';
-  buttonRotateH.type = 'button';
+  buttonRotateH.classList.add("rotate-horizontally");
+  buttonRotateH.innerHTML = "Rotate Horizontally";
+  buttonRotateH.type = "button";
 
-  const buttonRotateV = document.createElement('button');
+  const buttonRotateV = document.createElement("button");
   buttonsContainer.appendChild(buttonRotateV);
-  buttonRotateV.innerHTML = 'Rotate Vertically';
-  buttonRotateV.type = 'button';
+  buttonRotateV.classList.add("rotate-vertically");
+  buttonRotateV.innerHTML = "Rotate Vertically";
+  buttonRotateV.type = "button";
 
-  const buttonResetAll = document.createElement('button');
+  const buttonResetAll = document.createElement("button");
   controllersContainer.appendChild(buttonResetAll);
-  buttonResetAll.classList.add('reset-all');
-  buttonResetAll.innerHTML = 'Reset All';
-  buttonResetAll.type = 'button';
-}
+  buttonResetAll.classList.add("reset-all");
+  buttonResetAll.innerHTML = "Reset All";
+  buttonResetAll.type = "button";
+};
 
 createController();
 
@@ -82,7 +113,7 @@ const updateInputsHandler = () => {
 
     input.addEventListener("change", updateInputValueHandler);
   }
-}
+};
 
 updateInputsHandler();
 
@@ -90,7 +121,34 @@ updateInputsHandler();
 const flipHorizontallyBtn = document.querySelector(".rotate-horizontally");
 
 const flipHorizontallyHandler = () => {
-  image.classList.toggle('flip-horizontally');
-}
+  if (
+    image.classList.length === 1 ||
+    (image.classList.length === 2 && image.classList[1] === "flip-vertically")
+  ) {
+    image.style.setProperty("--rotateY", 180 + "deg");
+    image.classList.add("flip-horizontally");
+  } else {
+    image.style.setProperty("--rotateY", 0 + "deg");
+    image.classList.remove("flip-horizontally");
+  }
+};
 
 flipHorizontallyBtn.addEventListener("click", flipHorizontallyHandler);
+
+// Flip the image vertically
+const flipVerticallyBtn = document.querySelector(".rotate-vertically");
+
+const flipVerticallyHandler = () => {
+  if (
+    image.classList.length === 1 ||
+    (image.classList.length === 2 && image.classList[1] === "flip-horizontally")
+  ) {
+    image.style.setProperty("--rotateX", 180 + "deg");
+    image.classList.add("flip-vertically");
+  } else {
+    image.style.setProperty("--rotateX", 0 + "deg");
+    image.classList.remove("flip-vertically");
+  }
+};
+
+flipVerticallyBtn.addEventListener("click", flipVerticallyHandler);
