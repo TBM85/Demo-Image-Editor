@@ -48,6 +48,7 @@ const createController = () => {
 
   const buttonRotateH = document.createElement('button');
   buttonsContainer.appendChild(buttonRotateH);
+  buttonRotateH.classList.add('rotate-horizontally')
   buttonRotateH.innerHTML = 'Rotate Horizontally';
   buttonRotateH.type = 'button';
 
@@ -84,3 +85,12 @@ const updateInputsHandler = () => {
 }
 
 updateInputsHandler();
+
+// Flip the image horizontally
+const flipHorizontallyBtn = document.querySelector(".rotate-horizontally");
+
+const flipHorizontallyHandler = () => {
+  image.classList.toggle('flip-horizontally');
+}
+
+flipHorizontallyBtn.addEventListener("click", flipHorizontallyHandler);

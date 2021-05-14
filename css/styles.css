@@ -64,6 +64,7 @@ img {
   saturate(var(--saturate))
   sepia(var(--sepia))
   grayscale(var(--greyscale)); 
+  transition: 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 .controllers {
   display: flex;
@@ -106,4 +107,9 @@ footer {
   padding: 0;
   margin: 0;
   font-size: 0.8em;
+}
+
+/* Buttons */
+.flip-horizontally {
+  transform: rotateY(180deg);
 }
