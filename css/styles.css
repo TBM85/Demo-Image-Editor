@@ -78,6 +78,9 @@ label {
   display: flex;
   float: left;
 }
+input {
+  cursor: pointer;
+}
 .input-value {
   font-size: 0.8em;
   display: flex;

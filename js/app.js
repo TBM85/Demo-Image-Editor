@@ -13,7 +13,7 @@ const controllers = [
     type: "range",
     min: 0,
     max: 200,
-    value: 100,
+    value: 100
   },
   {
     name: "contrast",
@@ -21,7 +21,7 @@ const controllers = [
     type: "range",
     min: 0,
     max: 200,
-    value: 100,
+    value: 100
   },
   {
     name: "saturation",
@@ -29,7 +29,7 @@ const controllers = [
     type: "range",
     min: 0,
     max: 200,
-    value: 100,
+    value: 100
   },
   { name: "hue", id: "hue-rotate", type: "range", min: 0, max: 300, value: 0 },
   { name: "sepia", id: "sepia", type: "range", min: 0, max: 100, value: 0 },
@@ -39,7 +39,7 @@ const controllers = [
     type: "range",
     min: 0,
     max: 100,
-    value: 0,
+    value: 0
   },
 ];
 
@@ -64,7 +64,6 @@ const createController = () => {
     input.min = `${controller.min}`;
     input.max = `${controller.max}`;
     input.value = `${controller.value}`;
-    input.innerHTML = `${controller.value}`;
 
     const inputValue = document.createElement("div");
     controllerItem.appendChild(inputValue);
@@ -100,9 +99,9 @@ createController();
 // Updates value changes made to range controls
 const inputControllers = document.querySelectorAll(".controller input");
 
-const updateInputsHandler = () => {
+const updateInputValueHandler = () => {
   for (let input of inputControllers) {
-    const updateInputValueHandler = () => {
+    const updateInputsHandler = () => {
       if (input.id === "hue-rotate") {
         image.style.setProperty(`--${input.id}`, input.value + "deg");
       } else {
@@ -111,11 +110,36 @@ const updateInputsHandler = () => {
       input.nextElementSibling.innerHTML = input.value;
     };
 
-    input.addEventListener("change", updateInputValueHandler);
+    input.addEventListener("change", updateInputsHandler);
   }
 };
 
-updateInputsHandler();
+updateInputValueHandler();
+
+// Deletes all changes made and returns to all original values
+const resetInputValuesBtn = document.querySelector('.reset-all');
+
+const resetInputHandler = () => {
+  for (let input of inputControllers) {
+    let inputValues = getComputedStyle(input).getPropertyValue(`--${input.id}`);
+
+    if (`--${input.id}` === "--hue-rotate") {
+      let inputDegrees = inputValues.slice(1, -3);
+      input.nextElementSibling.innerHTML = inputDegrees;
+      input.value = inputDegrees;
+    } else {
+      let inputPercentage = inputValues.slice(1, -1);
+      input.nextElementSibling.innerHTML = inputPercentage;
+      input.value = inputPercentage;
+    }
+    
+    image.style.setProperty(`--${input.id}`, inputValues);
+    image.style.setProperty("--rotateY", "0deg");
+    image.style.setProperty("--rotateX", "0deg");
+  }
+}
+
+resetInputValuesBtn.addEventListener('click', resetInputHandler);
 
 // Flip the image horizontally
 const flipHorizontallyBtn = document.querySelector(".rotate-horizontally");
@@ -153,18 +177,7 @@ const flipVerticallyHandler = () => {
 
 flipVerticallyBtn.addEventListener("click", flipVerticallyHandler);
 
-// Deletes all changes made and returns to all original values
-const resetInputValuesBtn = document.querySelector('.reset-all');
 
-const resetInputValuesHandler = () => {
-  image.style.setProperty("--brightness", 100 + "%");
-  image.style.setProperty("--contrast", 100 + "%");
-  image.style.setProperty("--saturate", 100 + "%");
-  image.style.setProperty("--hue-rotate", 0 + "deg");
-  image.style.setProperty("--sepia", 0 + "%");
-  image.style.setProperty("--greyscale", 0 + "%");
-  image.style.setProperty("--rotateY", 0 + "deg");
-  image.style.setProperty("--rotateX", 0 + "deg");
-}
 
-resetInputValuesBtn.addEventListener('click', resetInputValuesHandler);
+
+
