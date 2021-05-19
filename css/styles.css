@@ -11,16 +11,28 @@
   .controllers {
     width: 100%;
   }
+  .controller {
+    margin: 0.25em;
+  }
+  button {
+    height: 4em;
+  }
 }
 @media (min-width: 768px) {
   .container {
-    padding: 1em;
+    padding: 1em 1em 0;
   }
   .image {
     width: calc(70% - 2em);
   }
   .controllers {
     width: calc(30% - 2em);
+  }
+  .controller {
+    margin: 0.5em;
+  }
+  button {
+    height: 3em;
   }
 }
 
@@ -64,13 +76,13 @@ img {
     hue-rotate(var(--hue-rotate)) saturate(var(--saturate)) sepia(var(--sepia))
     grayscale(var(--greyscale));
   transform: rotateX(var(--rotateX)) rotateY(var(--rotateY));
+  max-height: 35em;
 }
 .controllers {
   display: flex;
   flex-direction: column;
 }
 .controller {
-  margin: 0.5em;
   display: grid;
 }
 label {
@@ -87,7 +99,7 @@ input {
   justify-content: flex-end;
 }
 .buttons {
-  margin: 0.5em 0 1em;
+  margin: 0.5em 0 0;
 }
 button {
   margin: 0.8em 0.5em;
@@ -102,9 +114,6 @@ button {
   cursor: pointer;
   font-family: "Exo 2", sans-serif;
   font-size: 14px;
-}
-button.reset-all {
-  margin: 0 auto 1em;
 }
 footer {
   padding: 0;

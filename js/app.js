@@ -88,7 +88,7 @@ const createController = () => {
   buttonRotateV.type = "button";
 
   const buttonResetAll = document.createElement("button");
-  controllersContainer.appendChild(buttonResetAll);
+  buttonsContainer.appendChild(buttonResetAll);
   buttonResetAll.classList.add("reset-all");
   buttonResetAll.innerHTML = "Reset All";
   buttonResetAll.type = "button";
