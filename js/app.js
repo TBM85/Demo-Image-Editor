@@ -5,6 +5,7 @@ imageContainer.appendChild(image);
 image.classList.add("rotateImg");
 image.src =
   "https://cdn.pixabay.com/photo/2019/07/21/19/01/landscape-4353358_1280.jpg";
+image.alt = "image example";
 
 const controllers = [
   {
