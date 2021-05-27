@@ -55,7 +55,7 @@ const createController = () => {
 
     const label = document.createElement("label");
     controllerItem.appendChild(label);
-    label.for = `${controller.id}`;
+    label.htmlFor = `${controller.id}`;
     label.innerHTML = `${controller.name}`;
 
     const input = document.createElement("input");
